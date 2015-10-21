@@ -10,5 +10,17 @@
 	</form>
 	<input type="button" value="logout of twitter">
 <% else %>
-	<input type="button" value="login to twitter">
+	<input id='signInButton' type="button" value="login to twitter">
 <% end %>
+
+
+<script>
+	function redirectToLogin()
+	{
+		document.location.href = 'twitter/authentication';
+	}
+
+	$("#signInButton").click(function(){
+    	redirectToLogin();
+	});
+</script>
