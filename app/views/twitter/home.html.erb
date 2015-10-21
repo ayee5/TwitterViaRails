@@ -1,1 +1,14 @@
 <p>Im here</p>
+
+<% if session[:user_id] %>
+	<%=session[:user_id] %>
+	<%=current_user.name %>
+	Post a tweet
+	<form method="get">
+		<textarea name="textarea"></textarea>
+		<input type="submit" value="Post tweet">
+	</form>
+	<input type="button" value="logout of twitter">
+<% else %>
+	<input type="button" value="login to twitter">
+<% end %>

@@ -6,4 +6,5 @@ class TwitterController < ApplicationController
   #remember to check if user is login before enter the home page
   def home
   end
+
 end

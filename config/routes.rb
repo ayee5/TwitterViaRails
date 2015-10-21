@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
-   get '/auth/:provider/callback', to: 'twitter#home'
+   get '/auth/:provider/callback', to: 'sessions#create'
+   get '/twitter/home'
+   get 'twitter/authentication'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'twitter#authentication'
+   root to: 'twitter#home'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
