@@ -1,26 +1,26 @@
-<p>Im here</p>
-
 <% if session[:user_id] %>
-	<%=session[:user_id] %>
-	<%=current_user.name %>
-	Post a tweet
+	Signed in as <b><%=current_user.name %></b>&nbsp;
+    <input type="button" id="logOutButton" value="logout of twitter">
+	<br><br>Post a tweet
 	<form method="get">
-		<textarea name="textarea"></textarea>
+		<textarea rows="4" cols="50" name="textarea"></textarea>
 		<input type="submit" value="Post tweet">
 	</form>
-	<input type="button" value="logout of twitter">
 <% else %>
 	<input id='signInButton' type="button" value="login to twitter">
 <% end %>
 
-
 <script>
-	function redirectToLogin()
-	{
-		document.location.href = 'twitter/authentication';
-	}
+		function redirectToPath(uri)
+		{
+			document.location.href = uri;
+		}
 
-	$("#signInButton").click(function(){
-    	redirectToLogin();
-	});
+		$("#logOutButton").click(function(){
+    		redirectToPath('sessions/destroy');
+		});
+
+		$("#signInButton").click(function(){
+    		redirectToPath('twitter/authentication');
+		});
 </script>
