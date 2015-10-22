@@ -5,16 +5,22 @@ class TwitterController < ApplicationController
   end
 
   def home
-    #use tweet get parameter and post to twitter
-    message = params[:tweet]
-    tweetMessage(message)
+    if(session[:user_id])
+      #use tweet get parameter and post to twitter
+      message = params[:tweet]
+      tweetMessage(message)
+    end
   end
 
   #post a message to twitter
   def tweetMessage(message)
-    if(session[:user_id] && message != nil && message !="")
-      current_user.twitter.update(message);
+    if(message != nil && message !="")
+      current_user.twitter.update(essage)
     end
+  end
+
+  def getHomeTimeLine
+    return current_user.twitter.time_line()
   end
 end
 
