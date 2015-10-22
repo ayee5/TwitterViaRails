@@ -6,18 +6,21 @@
     <ul>
         <% for tweets in @homeTimeLine %>
             <li>
+                <b><%= tweets.user.name %></b> on
                 <%= tweets.created_at %>
                 <%= tweets.text %>
             </li>
         <% end %>
     </ul>
 
-	<br><br>Post a tweet
+	<br><br>
+	<h2>Tweet a message</h2>
 	<form method="get">
 		<textarea rows="4" cols="50" name="tweet"></textarea>
-		<input type="submit" value="Post tweet">
+		<input id="postTweet" type="submit" value="Post tweet">
 	</form>
 <% else %>
+	<h1>You are not login</h1>
 	<input id='signInButton' type="button" value="login to twitter">
 <% end %>
 
