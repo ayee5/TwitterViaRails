@@ -6,21 +6,24 @@ class TwitterController < ApplicationController
 
   def home
     if(session[:user_id])
+      twiiterObj = current_user.twitter
+
       #use tweet get parameter and post to twitter
       message = params[:tweet]
-      tweetMessage(message)
+      tweetMessage(twiiterObj,message)
+      @homeTimeLine = getHomeTimeLine(twiiterObj)
     end
   end
 
   #post a message to twitter
-  def tweetMessage(message)
+  def tweetMessage(twitterObject, message)
     if(message != nil && message !="")
-      current_user.twitter.update(essage)
+      twitterObject.update(message)
     end
   end
 
-  def getHomeTimeLine
-    return current_user.twitter.time_line()
+  def getHomeTimeLine(twitterObject)
+    return twitterObject.home_timeline
   end
 end
 

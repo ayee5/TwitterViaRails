@@ -1,6 +1,17 @@
 <% if session[:user_id] %>
 	Signed in as <b><%=current_user.name %></b>&nbsp;
     <input type="button" id="logOutButton" value="logout of twitter">
+
+    <h1>Home Time Line</h1>
+    <ul>
+        <% for tweets in @homeTimeLine %>
+            <li>
+                <%= tweets.created_at %>
+                <%= tweets.text %>
+            </li>
+        <% end %>
+    </ul>
+
 	<br><br>Post a tweet
 	<form method="get">
 		<textarea rows="4" cols="50" name="tweet"></textarea>
