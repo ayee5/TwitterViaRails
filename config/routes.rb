@@ -3,6 +3,7 @@ Rails.application.routes.draw do
    get '/sessions/destroy'
    get '/twitter/home'
    get 'twitter/authentication'
+   post 'twitter/getHomeTimeLineViaAjax' #use via ajax call
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -3,7 +3,7 @@
     <input type="button" id="logOutButton" value="logout of twitter">
 
     <h1>Home Time Line</h1>
-    <ul>
+    <ul id="homeTimeLineList">
         <% for tweets in @homeTimeLine %>
             <li>
                 <b><%= tweets.user.name %></b> on
@@ -30,6 +30,34 @@
 			document.location.href = uri;
 		}
 
+        function checkForTweets()
+        {
+            $.ajax
+            ({
+                type: "post",
+                url: "/twitter/getHomeTimeLineViaAjax",
+                dataType: "json",
+                success: function(results)
+                {
+                    var homeTimeLineList = $("#homeTimeLineList");
+                    if(results.length > 0)
+                    {
+                         homeTimeLineList.empty();
+                    }
+
+                    for (var i = 0; i < results.length; i++)
+                    { //populate div result
+                        var listElement = '<li>';
+                        listElement += '<b>' + results[i].user.name +'</b> on ';
+                        listElement += results[i].created_at + ' ';
+                        listElement += results[i].text;
+                        listElement += '</li>';
+                        homeTimeLineList.append(listElement);
+                    }
+                }
+            });
+        }
+
 		$("#logOutButton").click(function(){
     		redirectToPath('sessions/destroy');
 		});
@@ -37,4 +65,9 @@
 		$("#signInButton").click(function(){
     		redirectToPath('twitter/authentication');
 		});
+
+    <% if session[:user_id] %>
+        setInterval(function(){ console.log(2); checkForTweets(); }, 8000);
+    <% end %>
+
 </script>

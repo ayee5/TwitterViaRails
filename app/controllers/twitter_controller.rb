@@ -22,9 +22,15 @@ class TwitterController < ApplicationController
     end
   end
 
+  def getHomeTimeLineViaAjax
+    render json: current_user.twitter.home_timeline
+  end
+
   def getHomeTimeLine(twitterObject)
     return twitterObject.home_timeline
   end
+
+
 end
 
 
