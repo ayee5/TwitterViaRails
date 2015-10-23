@@ -8,7 +8,7 @@ class TwitterController < ApplicationController
     if(session[:user_id])
       twiiterObj = current_user.twitter
 
-      #use tweet get parameter and post to twitter
+      #use get parameter and tweet to twitter
       message = params[:tweet]
       tweetMessage(twiiterObj,message)
       @homeTimeLine = getHomeTimeLine(twiiterObj)
@@ -19,6 +19,7 @@ class TwitterController < ApplicationController
   def tweetMessage(twitterObject, message)
     if(message != nil && message !="")
       twitterObject.update(message)
+      redirect_to root_path
     end
   end
 

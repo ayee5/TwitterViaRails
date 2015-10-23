@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
     user
   end
 
+#create twitter client
   def twitter
     @client ||= Twitter::REST::Client.new do |config|
       config.consumer_key        = Rails.application.secrets.twitter_api_key
